@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'S-CoreDream-6Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  text-align: center;
+  font-family: 'S-CoreDream-6Bold';
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@media (min-width: 640px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 720px;
+    width: 100%;
+    background-image: url('./main.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #026345;
+  }
+
+  .main-detail {
+    position: absolute;
+    width: 200px;
+    border: 0;
+    padding: 10px;
+    background-color: #FDB801;
+    color: #003C81;
+    margin-top: 480px;
+    margin-right: 170px;
+  }
+  
+  .main-detail:hover {
+    background-color: #003C81;
+    color: #FDB801;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 720px;
+    width: 100%;
+    background-image: url('./main2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #026345;
+  }
+
+  .main-detail {
+    position: absolute;
+    border: 0;
+    padding: 10px;
+    background-color: #FDB801;
+    color: #003C81;
+    margin-top: 480px;
+    width: 200px;
+  }
+
+  .main-detail:hover {
+    background-color: #003C81;
+    color: #FDB801;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+.goods-detail {
+  font-family: 'S-CoreDream-3Light';
+}
