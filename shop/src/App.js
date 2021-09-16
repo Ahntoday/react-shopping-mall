@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
@@ -5,6 +6,7 @@ import shoesData from './shoes-data.js';
 
 function App() {
   let [shoes, shoesChange] = useState(shoesData);
+  let [shoesImg, shoesImgChange] = useState(["https://codingapple1.github.io/shop/shoes1.jpg", "https://codingapple1.github.io/shop/shoes2.jpg", "https://codingapple1.github.io/shop/shoes3.jpg"]);
 
   return (
     <div className="App">
@@ -31,26 +33,29 @@ function App() {
         <button className="main-detail">행사상품보기</button>
       </div>
       <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg"></img>
-            <h4> {shoesData[0].title} </h4>
-            <p className="goods-detail">{shoes[0].content} & {shoes[0].price} </p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg"></img>
-            <h4> {shoesData[1].title} </h4>
-            <p className="goods-detail">{shoes[1].content} & {shoes[1].price} </p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg"></img>
-            <h4> {shoesData[2].title}</h4>
-            <p className="goods-detail">{shoes[2].content} & {shoes[2].price} </p>
-          </div>
-        </div>
+        <ShoppingItem shoes={shoes} shoesImg={shoesImg} />
       </div>
     </div>
   );
+}
+
+const ShoppingItem = (props) => {
+  let data = props.shoes.map((el, i) => {
+    return (
+      <div className="col-md-4" key={i}>
+        <img src={props.shoesImg[i]}></img>
+        <h4> {el.title}</h4>
+        <p className="goods-detail">{el.content} & {el.price} </p>
+      </div>
+    )
+  });
+
+  return (
+    <div className="row">
+      {data}
+    </div>
+  )
+
 }
 
 export default App;
