@@ -5,9 +5,11 @@ import './App.css';
 import shoesData from './shoes-data.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail.js';
+import axios from 'axios';
 
 function App() {
   let [shoes, shoesChange] = useState(shoesData);
+  let [showloadingUI, showloadingUIChange] = useState(false);
 
   return (
     <div className="App">
@@ -17,8 +19,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link > <Link to="/">Home</Link></Nav.Link>
-              <Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>
+              <Nav.Link as={Link} to="/" > Home</Nav.Link>
+              <Nav.Link as={Link} to="/detail">Detail</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -37,6 +39,23 @@ function App() {
           </div>
           <div className="container">
             <ShoppingItem shoes={shoes} />
+            {
+              showloadingUI === true
+                ? <LoadingUI />
+                : null
+            }
+            <button className="btn btn-primary" onClick={() => {
+              showloadingUIChange(true);
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((result) => {
+                  showloadingUIChange(false); // 로딩중 UI 안보이게
+                  shoesChange([...shoes, ...result.data]);
+                })
+                .catch(() => {
+                  showloadingUIChange(false);
+                  console.log('실패');
+                });
+            }}>더보기</button>
           </div>
         </Route>
         <Route path="/detail/:id">
@@ -54,7 +73,7 @@ const ShoppingItem = (props) => {
   let data = props.shoes.map((el, i) => {
     return (
       <div className="col-md-4" key={i}>
-        <img src={el.img} alt="신발상세사진"></img>
+        <img src={"https://codingapple1.github.io/shop/shoes" + (i + 1) + ".jpg"} alt="신발상세사진"></img>
         <h4> {el.title}</h4>
         <p className="goods-detail">{el.content} & {el.price} </p>
       </div>
@@ -66,7 +85,15 @@ const ShoppingItem = (props) => {
       {data}
     </div>
   )
-
 }
+
+const LoadingUI = () => {
+  return (
+    <div className="loadingUI">
+      <p>로딩중입니다</p>
+    </div>
+  )
+}
+
 
 export default App;

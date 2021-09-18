@@ -122,3 +122,14 @@ img {
 .goods-detail {
   font-family: 'S-CoreDream-3Light';
 }
+
+.loadingUI {
+  background: #026345;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
+  color: #ffe591;
+  text-align: center;
+}
