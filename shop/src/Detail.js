@@ -38,7 +38,12 @@ const Detail = (props) => {
                     <h4 className="pt-5"> {findedShoppingItem.title}</h4>
                     <p>{findedShoppingItem.content}</p>
                     <p>{findedShoppingItem.price}</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <Stock stock={props.stock} id={id} />
+                    <button className="btn btn-danger" onClick={() => {
+                        let temp = [...props.stock];
+                        temp[id] -= 1;
+                        props.stockChange(temp);
+                    }}>주문하기</button>
                     <button className="btn btn-danger" onClick={() => {
                         history.goBack();
                     }}>뒤로가기</button>
@@ -53,6 +58,12 @@ const Alert = () => {
         <div className="customAlertYellow">
             <p>재고가 얼마 남지 않았습니다</p>
         </div>
+    )
+}
+
+const Stock = (props) => {
+    return (
+        <p>재고: { props.stock[props.id]} </p>
     )
 }
 

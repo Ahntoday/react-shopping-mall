@@ -10,6 +10,7 @@ import axios from 'axios';
 function App() {
   let [shoes, shoesChange] = useState(shoesData);
   let [showloadingUI, showloadingUIChange] = useState(false);
+  let [stock, stockChange] = useState([10, 11, 12]); // 재고데이터
 
   return (
     <div className="App">
@@ -59,7 +60,7 @@ function App() {
           </div>
         </Route>
         <Route path="/detail/:id">
-          <Detail shoes={shoes} />
+          <Detail shoes={shoes} stock={stock} stockChange={stockChange} />
         </Route>
         <Route path="/:id">
 
