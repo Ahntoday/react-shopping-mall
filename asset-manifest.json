@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-shopping-mall/static/css/main.07491c42.chunk.css",
-    "main.js": "/react-shopping-mall/static/js/main.0c1bc70d.chunk.js",
-    "main.js.map": "/react-shopping-mall/static/js/main.0c1bc70d.chunk.js.map",
-    "runtime-main.js": "/react-shopping-mall/static/js/runtime-main.705df78b.js",
-    "runtime-main.js.map": "/react-shopping-mall/static/js/runtime-main.705df78b.js.map",
-    "static/js/2.7664c814.chunk.js": "/react-shopping-mall/static/js/2.7664c814.chunk.js",
-    "static/js/2.7664c814.chunk.js.map": "/react-shopping-mall/static/js/2.7664c814.chunk.js.map",
-    "static/js/3.39d604d4.chunk.js": "/react-shopping-mall/static/js/3.39d604d4.chunk.js",
-    "static/js/3.39d604d4.chunk.js.map": "/react-shopping-mall/static/js/3.39d604d4.chunk.js.map",
+    "main.css": "/react-shopping-mall/static/css/main.453a3076.chunk.css",
+    "main.js": "/react-shopping-mall/static/js/main.1f4a8196.chunk.js",
+    "main.js.map": "/react-shopping-mall/static/js/main.1f4a8196.chunk.js.map",
+    "runtime-main.js": "/react-shopping-mall/static/js/runtime-main.f8c5ba62.js",
+    "runtime-main.js.map": "/react-shopping-mall/static/js/runtime-main.f8c5ba62.js.map",
+    "static/js/2.c81c2c02.chunk.js": "/react-shopping-mall/static/js/2.c81c2c02.chunk.js",
+    "static/js/2.c81c2c02.chunk.js.map": "/react-shopping-mall/static/js/2.c81c2c02.chunk.js.map",
+    "static/js/3.aae666d7.chunk.js": "/react-shopping-mall/static/js/3.aae666d7.chunk.js",
+    "static/js/3.aae666d7.chunk.js.map": "/react-shopping-mall/static/js/3.aae666d7.chunk.js.map",
     "index.html": "/react-shopping-mall/index.html",
-    "static/css/main.07491c42.chunk.css.map": "/react-shopping-mall/static/css/main.07491c42.chunk.css.map",
-    "static/js/2.7664c814.chunk.js.LICENSE.txt": "/react-shopping-mall/static/js/2.7664c814.chunk.js.LICENSE.txt",
+    "static/css/main.453a3076.chunk.css.map": "/react-shopping-mall/static/css/main.453a3076.chunk.css.map",
+    "static/js/2.c81c2c02.chunk.js.LICENSE.txt": "/react-shopping-mall/static/js/2.c81c2c02.chunk.js.LICENSE.txt",
     "static/media/App.css": "/react-shopping-mall/static/media/main2.b3e0ef75.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.705df78b.js",
-    "static/js/2.7664c814.chunk.js",
-    "static/css/main.07491c42.chunk.css",
-    "static/js/main.0c1bc70d.chunk.js"
+    "static/js/runtime-main.f8c5ba62.js",
+    "static/js/2.c81c2c02.chunk.js",
+    "static/css/main.453a3076.chunk.css",
+    "static/js/main.1f4a8196.chunk.js"
   ]
 }
