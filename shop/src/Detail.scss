@@ -1,5 +1,13 @@
 $maincolor: #ff0000;
 
+.wow-enter {
+    opacity: 0;
+}
+
+.wow-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+}
 .red {
     color: $maincolor;
 }

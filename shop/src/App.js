@@ -1,11 +1,13 @@
 /* eslint-disable */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 import shoesData from './shoes-data.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail.js';
 import axios from 'axios';
+
+let stockContext = React.createContext();
 
 function App() {
   let [shoes, shoesChange] = useState(shoesData);
@@ -39,12 +41,15 @@ function App() {
             <button className="main-detail">행사상품보기</button>
           </div>
           <div className="container">
-            <ShoppingItem shoes={shoes} />
-            {
-              showloadingUI === true
-                ? <LoadingUI />
-                : null
-            }
+            <stockContext.Provider value={stock}>
+              <ShoppingItem shoes={shoes} />
+              {
+                showloadingUI === true
+                  ? <LoadingUI />
+                  : null
+              }
+            </stockContext.Provider>
+
             <button className="btn btn-primary" onClick={() => {
               showloadingUIChange(true);
               axios.get('https://codingapple1.github.io/shop/data2.json')
@@ -71,12 +76,14 @@ function App() {
 }
 
 const ShoppingItem = (props) => {
+  let stock = useContext(stockContext);
   let data = props.shoes.map((el, i) => {
     return (
       <div className="col-md-4" key={i}>
         <img src={"https://codingapple1.github.io/shop/shoes" + (i + 1) + ".jpg"} alt="신발상세사진"></img>
         <h4> {el.title}</h4>
         <p className="goods-detail">{el.content} & {el.price} </p>
+        {stock}
       </div>
     )
   });

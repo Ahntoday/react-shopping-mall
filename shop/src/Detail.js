@@ -1,11 +1,15 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
+import { Nav } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import './Detail.scss';
 
 const Detail = (props) => {
     let [showAlert, showAlertChange] = useState(true);
     let [inputData, inputDataChange] = useState('');
+    let [pushedTab, pushedTabChange] = useState(0);
+    let [aniSwitch, aniSwitchChange] = useState(false);
 
     useEffect(() => {
         // 2초 후 알람창 안보이게
@@ -49,6 +53,18 @@ const Detail = (props) => {
                     }}>뒤로가기</button>
                 </div>
             </div>
+            <Nav variant="tabs" defaultActiveKey="link-0">
+                <Nav.Item>
+                    <Nav.Link eventKey="link-0" onClick={() => { aniSwitchChange(false); pushedTabChange(0) }}>Active</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-1" onClick={() => { aniSwitchChange(false); pushedTabChange(1) }}>Option 2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <CSSTransition in={aniSwitch} classNames="wow" timeout={500}>
+                <TabContent pushedTab={pushedTab} aniSwitchChange={aniSwitchChange} />
+            </CSSTransition>
+
         </div>
     )
 }
@@ -65,6 +81,19 @@ const Stock = (props) => {
     return (
         <p>재고: { props.stock[props.id]} </p>
     )
+}
+
+const TabContent = (props) => {
+    useEffect(() => {
+        props.aniSwitchChange(true);
+    })
+    if (props.pushedTab === 0) {
+        return <div>0번째 내용입니다</div>
+    } else if (props.pushedTab === 1) {
+        return <div>1번째 내용입니다</div>
+    } else if (props.pushedTab === 2) {
+        return <div>2번째 내용입니다</div>
+    }
 }
 
 export default Detail
