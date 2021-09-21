@@ -9,7 +9,32 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-let store = createStore(() => { return [{ id: 0, name: 'White and Black', quantity: 2 }, { id: 2, name: 'Grey Yordan', quantity: 5 }, { id: 3, name: 'Flowey', quantity: 3 }] });
+let defaultState = [
+  { id: 0, name: 'White and Black', quantity: 2 },
+  { id: 2, name: 'Grey Yordan', quantity: 5 },
+  { id: 3, name: 'Flowey', quantity: 3 }
+];
+
+const reducer = (state = defaultState, action) => {
+  if (action.type === '수량증가') { // 수량증가라는 이름의 데이터수정방법 만들기
+    let copy = [...state];
+    copy[0].quantity++;
+    return copy
+  }
+  else if (action.type === '수량감소') {
+    let copy = [...state];
+    copy[0].quantity--;
+    if (copy[0].quantity <= 0) {
+      copy[0].quantity = 0;
+    }
+    return copy
+  }
+  else {
+    return state
+  }
+}
+
+let store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
