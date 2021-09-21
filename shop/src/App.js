@@ -3,8 +3,9 @@ import React, { useState, useContext } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 import shoesData from './shoes-data.js';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Detail from './Detail.js';
+import Cart from './Cart.js';
 import axios from 'axios';
 
 let stockContext = React.createContext();
@@ -35,42 +36,42 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Switch>
-        <Route exact path="/">
-          <div className="main">
-            <button className="main-detail">행사상품보기</button>
-          </div>
-          <div className="container">
-            <stockContext.Provider value={stock}>
-              <ShoppingItem shoes={shoes} />
-              {
-                showloadingUI === true
-                  ? <LoadingUI />
-                  : null
-              }
-            </stockContext.Provider>
+      <Route exact path="/">
+        <div className="main">
+          <button className="main-detail">행사상품보기</button>
+        </div>
+        <div className="container">
+          <stockContext.Provider value={stock}>
+            <ShoppingItem shoes={shoes} />
+            {
+              showloadingUI === true
+                ? <LoadingUI />
+                : null
+            }
+          </stockContext.Provider>
 
-            <button className="btn btn-primary" onClick={() => {
-              showloadingUIChange(true);
-              axios.get('https://codingapple1.github.io/shop/data2.json')
-                .then((result) => {
-                  showloadingUIChange(false); // 로딩중 UI 안보이게
-                  shoesChange([...shoes, ...result.data]);
-                })
-                .catch(() => {
-                  showloadingUIChange(false);
-                  console.log('실패');
-                });
-            }}>더보기</button>
-          </div>
-        </Route>
-        <Route path="/detail/:id">
-          <Detail shoes={shoes} stock={stock} stockChange={stockChange} />
-        </Route>
-        <Route path="/:id">
-
-        </Route>
-      </Switch>
+          <button className="btn btn-primary" onClick={() => {
+            showloadingUIChange(true);
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result) => {
+                showloadingUIChange(false); // 로딩중 UI 안보이게
+                shoesChange([...shoes, ...result.data]);
+              })
+              .catch(() => {
+                showloadingUIChange(false);
+                console.log('실패');
+              });
+          }}>더보기</button>
+        </div>
+      </Route>
+      <Route path="/detail/:id">
+        <Detail shoes={shoes} stock={stock} stockChange={stockChange} />
+      </Route>
+      <Route path="/:id">
+      </Route>
+      <Route path="/cart">
+        <Cart />
+      </Route>
     </div>
   );
 }
