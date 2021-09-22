@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, lazy, Suspense } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 import shoesData from './shoes-data.js';
 import { Link, Route, useHistory } from 'react-router-dom';
-import Detail from './Detail.js';
-import Cart from './Cart.js';
+let Detail = lazy(() => import('./Detail.js'));
+let Cart = lazy(() => import('./Cart.js'));
 import axios from 'axios';
 
 let stockContext = React.createContext();
@@ -62,7 +62,10 @@ function App() {
         </div>
       </Route>
       <Route path="/detail/:id">
-        <Detail shoes={shoes} stock={stock} stockChange={stockChange} />
+        <Suspense fallback={<div>로딩중이에요</div>}>
+          <Detail shoes={shoes} stock={stock} stockChange={stockChange} />
+        </Suspense>
+
       </Route>
       <Route path="/:id">
       </Route>

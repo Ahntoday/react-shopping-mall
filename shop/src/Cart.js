@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { connect, useSelector, useDispatch } from 'react-redux';
+import './Cart.css';
 
 const Cart = (props) => {
     let state = useSelector(state => state);
