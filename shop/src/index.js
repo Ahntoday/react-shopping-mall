@@ -22,13 +22,26 @@ const alertReducer = (state = alertDefaultState, action) => {
 }
 
 let defaultState = [
-  { id: 0, name: 'White and Black', quantity: 2 },
-  { id: 2, name: 'Grey Yordan', quantity: 5 },
-  { id: 3, name: 'Flowey', quantity: 3 }
+  { id: 0, name: 'White and Black', quantity: 10 },
+  { id: 1, name: 'Grey Yordan', quantity: 11 },
+  { id: 2, name: 'Flowey', quantity: 12 }
 ];
 
 const reducer = (state = defaultState, action) => {
-  if (action.type === '수량증가') { // 수량증가라는 이름의 데이터수정방법 만들기
+  if (action.type === '항목추가') { // 이미 장바구니에 있는 항목이면 해당 상품수량 증가
+    let copy = [...state];
+    let copiedId = [];
+    copy.map(el => copiedId.push(el.id));
+    let id = copiedId.indexOf(action.payload.id);
+    if (id === -1) {
+      copy.push(action.payload);
+    }
+    else {
+      copy[id].quantity++;
+    }
+    return copy
+  }
+  else if (action.type === '수량증가') { // 수량증가라는 이름의 데이터수정방법 만들기
     let copy = [...state];
     copy[0].quantity++;
     return copy

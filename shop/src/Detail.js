@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 import './Detail.scss';
 
 const Detail = (props) => {
@@ -44,9 +45,8 @@ const Detail = (props) => {
                     <p>{findedShoppingItem.price}</p>
                     <Stock stock={props.stock} id={id} />
                     <button className="btn btn-danger" onClick={() => {
-                        let temp = [...props.stock];
-                        temp[id] -= 1;
-                        props.stockChange(temp);
+                        props.dispatch({ type: '항목추가', payload: { id: findedShoppingItem.id, name: findedShoppingItem.title, quantity: props.stock[id] } });
+                        history.push('/cart');
                     }}>주문하기</button>
                     <button className="btn btn-danger" onClick={() => {
                         history.goBack();
@@ -96,4 +96,12 @@ const TabContent = (props) => {
     }
 }
 
-export default Detail
+const convertStoreDataToProps = (state) => { // redux store 데이터 props로 변환
+    return {
+        state: state.reducer, // state 데이터를 state라는 이름의 props로 바꾸기
+        alertState: state.alertReducer
+    }
+}
+
+export default connect(convertStoreDataToProps)(Detail);
+// export default Detail
