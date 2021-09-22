@@ -7,7 +7,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+
+let alertDefaultState = true;
+
+const alertReducer = (state = alertDefaultState, action) => {
+  if (action.type === 'closeAlert') {
+    state = false;
+    return state;
+  }
+  else {
+    return state
+  }
+}
 
 let defaultState = [
   { id: 0, name: 'White and Black', quantity: 2 },
@@ -34,7 +46,7 @@ const reducer = (state = defaultState, action) => {
   }
 }
 
-let store = createStore(reducer);
+let store = createStore(combineReducers({ reducer, alertReducer }));
 
 ReactDOM.render(
   <React.StrictMode>

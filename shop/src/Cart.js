@@ -32,13 +32,24 @@ const Cart = (props) => {
                     }
                 </tbody>
             </Table>
+            {
+                props.alertState === true
+                    ? (
+                        <div className="customAlertYellow">
+                            <p>지금 구매하시면 타임세일 20%</p>
+                            <button onClick={() => { props.dispatch({ type: 'closeAlert' }) }}>X</button>
+                        </div>
+                    )
+                    : null
+            }
         </div>
     )
 }
 
 const convertStoreDataToProps = (state) => { // redux store 데이터 props로 변환
     return {
-        state: state // state 데이터를 state라는 이름의 props로 바꾸기
+        state: state.reducer, // state 데이터를 state라는 이름의 props로 바꾸기
+        alertState: state.alertReducer
     }
 }
 
