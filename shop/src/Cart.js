@@ -25,8 +25,8 @@ const Cart = (props) => {
                                     <td>{el.name}</td>
                                     <td>{el.quantity}</td>
                                     <td>
-                                        <button onClick={() => { dispatch({ type: '수량증가' }) }}>+</button>
-                                        <button onClick={() => { dispatch({ type: '수량감소' }) }}>-</button>
+                                        <button onClick={() => { dispatch({ type: '수량증가', payload: el.id }) }}>+</button>
+                                        <button onClick={() => { dispatch({ type: '수량감소', payload: el.id }) }}>-</button>
                                     </td>
                                 </tr>
                             )

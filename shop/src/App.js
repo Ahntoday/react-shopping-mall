@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 import shoesData from './shoes-data.js';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
 import Detail from './Detail.js';
 import Cart from './Cart.js';
 import axios from 'axios';
@@ -41,15 +41,12 @@ function App() {
           <button className="main-detail">행사상품보기</button>
         </div>
         <div className="container">
-          <stockContext.Provider value={stock}>
-            <ShoppingItem shoes={shoes} />
-            {
-              showloadingUI === true
-                ? <LoadingUI />
-                : null
-            }
-          </stockContext.Provider>
-
+          <ShoppingItem shoes={shoes} />
+          {
+            showloadingUI === true
+              ? <LoadingUI />
+              : null
+          }
           <button className="btn btn-primary" onClick={() => {
             showloadingUIChange(true);
             axios.get('https://codingapple1.github.io/shop/data2.json')
@@ -78,10 +75,12 @@ function App() {
 
 const ShoppingItem = (props) => {
   let stock = useContext(stockContext);
+  let history = useHistory();
+
   let data = props.shoes.map((el, i) => {
     return (
-      <div className="col-md-4" key={i}>
-        <img src={"https://codingapple1.github.io/shop/shoes" + (i + 1) + ".jpg"} alt="신발상세사진"></img>
+      <div className="col-md-4" key={i} onClick={() => { history.push('/detail/' + el.id) }}>
+        <img src={"https://codingapple1.github.io/shop/shoes" + (el.id + 1) + ".jpg"} alt="신발상세사진"></img>
         <h4> {el.title}</h4>
         <p className="goods-detail">{el.content} & {el.price} </p>
         {stock}
