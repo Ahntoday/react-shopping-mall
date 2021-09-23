@@ -5,7 +5,7 @@ import './App.css';
 import shoesData from './shoes-data.js';
 import { Link, Route, useHistory } from 'react-router-dom';
 let Detail = lazy(() => import('./Detail.js'));
-let Cart = lazy(() => import('./Cart.js'));
+import Cart from './Cart.js';
 import axios from 'axios';
 
 let stockContext = React.createContext();

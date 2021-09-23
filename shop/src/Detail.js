@@ -26,6 +26,18 @@ const Detail = (props) => {
         return item.id == id
     });
 
+    let lookedItem = [];
+    useEffect(() => {
+        lookedItem = localStorage.getItem('lookedItem');
+        if (lookedItem == null) { lookedItem = [] } else { lookedItem = JSON.parse(lookedItem) }
+
+        lookedItem.push(id);
+        lookedItem = new Set(lookedItem);
+        lookedItem = [...lookedItem];
+
+        localStorage.setItem('lookedItem', JSON.stringify(lookedItem));
+    }, []);
+
     return (
         <div className="container">
             {inputData}
@@ -64,7 +76,9 @@ const Detail = (props) => {
             <CSSTransition in={aniSwitch} classNames="wow" timeout={500}>
                 <TabContent pushedTab={pushedTab} aniSwitchChange={aniSwitchChange} />
             </CSSTransition>
-
+            <div className="lookedItems">
+                1, 2, 3
+            </div>
         </div>
     )
 }
@@ -79,7 +93,7 @@ const Alert = () => {
 
 const Stock = (props) => {
     return (
-        <p>재고: { props.stock[props.id]} </p>
+        <p>재고: {props.stock[props.id]} </p>
     )
 }
 
